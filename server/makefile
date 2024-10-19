@@ -1,6 +1,6 @@
 APP_NAME=Chat_GPT_Response
 
-all: clean build
+all: clean build run
 
 build:
 	go build -o $(APP_NAME)
