@@ -29,9 +29,11 @@ function App() {
     const data = {
       motive: motiveText,
       history: historyText,
-      checked1: checked1,
-      checked2: checked2,
-      checked3: checked3,
+      experience_Checkbox: {
+        checked1: checked1,
+        checked2: checked2,
+        checked3: checked3
+      }
     };
 
     try {
