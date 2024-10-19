@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
@@ -48,7 +49,13 @@ func main() {
 			return
 		}
 
-		fmt.Printf("Received JSON: %+v\n", printRequest)
+		prettyJSON, err := json.MarshalIndent(printRequest, "", "  ")
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate JSON"})
+			return
+		}
+
+		fmt.Printf("Received JSON:\n%s\n", string(prettyJSON))
 
 		c.JSON(http.StatusOK, gin.H{"status": "success"})
 	})
