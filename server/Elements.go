@@ -1,8 +1,12 @@
 package main
 
 type PrintRequest struct {
-	Motive              string              `json:"motive"`
-	History             string              `json:"history"`
+	Motive  string  `json:"motive"`
+	History History `json:"history"`
+}
+
+type History struct {
+	HistoryText         string              `json:"historyText"`
 	Experience_Checkbox Experience_Checkbox `json:"experience_Checkbox"`
 }
 

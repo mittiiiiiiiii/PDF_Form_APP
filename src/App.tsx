@@ -28,11 +28,13 @@ function App() {
   const handlePrint = async () => {
     const data = {
       motive: motiveText,
-      history: historyText,
-      experience_Checkbox: {
-        checked1: checked1,
-        checked2: checked2,
-        checked3: checked3
+      history: {
+        historyText: historyText,
+        experience_Checkbox: {
+          checked1: checked1,
+          checked2: checked2,
+          checked3: checked3
+        }
       }
     };
 
