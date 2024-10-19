@@ -55,15 +55,19 @@ function App() {
   return (
       <BackgroundContainer>
         <PrintButton onClick={handlePrint}>プリント</PrintButton>
-        <MotiveTextBox placeholder="創業の動機を箇条書きで入力" value={motiveText} onChange={(e) => setMotiveText(e.target.value)}/>
-        <MotiveSendButton onClick={() => handleSend(motiveText, setMotiveText)}>送信</MotiveSendButton>
-        <HistoryTextBox placeholder="経営者の略歴を入力" value={historyText} onChange={(e) => setHistoryText(e.target.value)}></HistoryTextBox>
-        <HistorySendButton onClick={() => handleSend(historyText, setHistoryText)}>送信</HistorySendButton>
-        <Experience_Checkbox>
-          <Checkbox_1 checked={checked1} onChange={handleCheckboxChange(setChecked1)}/>
-          <Checkbox_2 checked={checked2} onChange={handleCheckboxChange(setChecked2)}/>
-          <Checkbox_3 checked={checked3} onChange={handleCheckboxChange(setChecked3)}/>
-        </Experience_Checkbox>
+        <MotiveContainer>
+          <MotiveTextBox placeholder="創業の動機を箇条書きで入力" value={motiveText} onChange={(e) => setMotiveText(e.target.value)}/>
+          <MotiveSendButton onClick={() => handleSend(motiveText, setMotiveText)}>質問</MotiveSendButton>
+        </MotiveContainer>
+        <HistoryContainer>
+          <HistoryTextBox placeholder="経営者の略歴を入力" value={historyText} onChange={(e) => setHistoryText(e.target.value)}></HistoryTextBox>
+          <HistorySendButton onClick={() => handleSend(historyText, setHistoryText)}>質問</HistorySendButton>
+          <Experience_Checkbox>
+            <Checkbox_1 checked={checked1} onChange={handleCheckboxChange(setChecked1)}/>
+            <Checkbox_2 checked={checked2} onChange={handleCheckboxChange(setChecked2)}/>
+            <Checkbox_3 checked={checked3} onChange={handleCheckboxChange(setChecked3)}/>
+          </Experience_Checkbox>
+        </HistoryContainer>
       </BackgroundContainer>
   )
 }
@@ -80,6 +84,9 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-repeat: no-repeat
+`;
+
+const MotiveContainer = styled.div`
 `;
 
 const PrintButton = styled(SendButton)`
@@ -100,6 +107,9 @@ const MotiveSendButton = styled(SendButton)`
   position: absolute;
   top: 115px;
   left: 805px;
+`;
+
+const HistoryContainer = styled.div`
 `;
 
 const HistoryTextBox = styled(TextBox)`
