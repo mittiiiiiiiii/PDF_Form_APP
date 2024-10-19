@@ -26,11 +26,12 @@ func main() {
 
 	apiKey := os.Getenv("GPT_API_KEY")
 
-	question := "Hello, how are you today?"
 	gin.SetMode(gin.ReleaseMode)
 
 	router := gin.Default()
 	router.GET("/", func(c *gin.Context) {
+		question := c.Query("question")
+
 		messages = append(messages, Message{
 			Role:    "user",
 			Content: question,

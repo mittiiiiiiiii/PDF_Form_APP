@@ -1,11 +1,29 @@
+'use client';
+
 import Form_Image from '../public/PlanOfStart-up_page-0001.jpg'
 import styled from 'styled-components';
+import { useState } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [text, setText]=useState<string>('');
+
+  const handleSend = async ()=>{
+    try {
+      const res = await axios.get<{response: string}>('http://localhost:8080/',{
+        params: { question: text },
+      });
+      setText(res.data.response);
+      console.log('API Response:', res.data.response);
+    } catch (error){
+      console.error('Error calling API:', error);
+    }
+  };
+
   return (
       <BackgroundContainer>
-        <TextBox placeholder="創業の動機を箇条書きで入力" />
-        <SendButton>送信</SendButton>
+          <TextBox placeholder="創業の動機を箇条書きで入力" value={text} onChange={(e) => setText(e.target.value)} />
+      <SendButton onClick={handleSend}>送信</SendButton>
       </BackgroundContainer>
   )
 }
