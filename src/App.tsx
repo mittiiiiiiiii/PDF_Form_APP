@@ -12,7 +12,7 @@ function App() {
 
   const handleSend = async (text: string, setText: (value: string) => void) => {
     try {
-      const res = await axios.get<{ response: string }>('http://localhost:8080/', {
+      const res = await axios.get<{ response: string }>('http://localhost:8080/gpt', {
         params: { question: text },
       });
       setText(res.data.response);
@@ -22,8 +22,27 @@ function App() {
     }
   };
 
+  const handlePrint = async () => {
+    const data = {
+      motive: motiveText,
+      history: historyText,
+    };
+
+    try {
+      const res = await axios.post('http://localhost:8080/print', data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('Print API Response:', res.data);
+    } catch (error) {
+      console.error('Error calling Print API:', error);
+    }
+  };
+
   return (
       <BackgroundContainer>
+        <PrintButton onClick={handlePrint}>プリント</PrintButton>
         <MotiveTextBox placeholder="創業の動機を箇条書きで入力" value={motiveText} onChange={(e) => setMotiveText(e.target.value)}/>
         <MotiveSendButton onClick={() => handleSend(motiveText, setMotiveText)}>送信</MotiveSendButton>
         <HistoryTextBox placeholder="経営者の略歴を入力" value={historyText} onChange={(e) => setHistoryText(e.target.value)}></HistoryTextBox>
@@ -46,6 +65,12 @@ const BackgroundContainer = styled.div`
   align-items: center;
   background-repeat: no-repeat
 `;
+
+const PrintButton = styled(SendButton)`
+  position: absolute;
+  top: 30px;
+  left: 450px;
+`
 
 const MotiveTextBox = styled(TextBox)`
   height: 53px;

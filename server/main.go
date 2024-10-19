@@ -25,7 +25,7 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 
 	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
+	router.GET("/gpt", func(c *gin.Context) {
 		question := c.Query("question")
 
 		messages = append(messages, Message{
@@ -39,6 +39,18 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{
 			"response": response.Choices[0].Messages.Content,
 		})
+	})
+
+	router.POST("/print", func(c *gin.Context) {
+		var printRequest PrintRequest
+		if err := c.ShouldBindJSON(&printRequest); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		fmt.Printf("Received JSON: %+v\n", printRequest)
+
+		c.JSON(http.StatusOK, gin.H{"status": "success"})
 	})
 
 	router.Run(":8080")
