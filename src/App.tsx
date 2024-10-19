@@ -5,6 +5,7 @@ function App() {
   return (
       <BackgroundContainer>
         <TextBox placeholder="創業の動機を箇条書きで入力" />
+        <SendButton>送信</SendButton>
       </BackgroundContainer>
   )
 }
@@ -34,3 +35,12 @@ const TextBox = styled.input`
   top: 105px;
   left: 250px;
 `;
+
+const SendButton = styled.button`
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: absolute;
+  top: 115px;
+  left: 805px;
+`

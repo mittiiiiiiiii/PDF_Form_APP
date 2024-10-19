@@ -37,7 +37,7 @@ func main() {
 		})
 
 		response := getOpenAIResponse(apiKey)
-		fmt.Println(response.Choices[0].Messages.Content)
+		fmt.Println(response)
 
 		c.JSON(http.StatusOK, gin.H{
 			"response": response.Choices[0].Messages.Content,
