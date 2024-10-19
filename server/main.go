@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -9,8 +8,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	"strings"
 
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
@@ -27,17 +26,11 @@ func main() {
 
 	apiKey := os.Getenv("GPT_API_KEY")
 
-	reader := bufio.NewReader(os.Stdin)
+	question := "Hello, how are you today?"
+	gin.SetMode(gin.ReleaseMode)
 
-	for {
-		fmt.Print("Ask a question: ")
-		question, _ := reader.ReadString('\n')
-		question = strings.TrimSpace(question)
-
-		if question == "exit" {
-			break
-		}
-
+	router := gin.Default()
+	router.GET("/", func(c *gin.Context) {
 		messages = append(messages, Message{
 			Role:    "user",
 			Content: question,
@@ -45,8 +38,13 @@ func main() {
 
 		response := getOpenAIResponse(apiKey)
 		fmt.Println(response.Choices[0].Messages.Content)
-		print("\n")
-	}
+
+		c.JSON(http.StatusOK, gin.H{
+			"response": response.Choices[0].Messages.Content,
+		})
+	})
+
+	router.Run(":8080")
 }
 
 func getOpenAIResponse(apiKey string) OpenaiResponse {
