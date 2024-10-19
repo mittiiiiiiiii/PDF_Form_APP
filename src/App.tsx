@@ -7,25 +7,27 @@ import axios from 'axios';
 import { Checkboxs, TextBox,SendButton } from './utils/CommonStyle';
 
 function App() {
-  const [text, setText]=useState<string>('');
+  const [motiveText, setMotiveText] = useState<string>('');
+  const [historyText, setHistoryText] = useState<string>('');
 
-  const handleSend = async ()=>{
+  const handleSend = async (text: string, setText: (value: string) => void) => {
     try {
-      const res = await axios.get<{response: string}>('http://localhost:8080/',{
+      const res = await axios.get<{ response: string }>('http://localhost:8080/', {
         params: { question: text },
       });
       setText(res.data.response);
       console.log('API Response:', res.data.response);
-    } catch (error){
+    } catch (error) {
       console.error('Error calling API:', error);
     }
   };
 
   return (
       <BackgroundContainer>
-        <MotiveTextBox placeholder="創業の動機を箇条書きで入力" value={text} onChange={(e) => setText(e.target.value)} />
-        <MotiveSendButton onClick={handleSend}>送信</MotiveSendButton>
-        <HistoryTextBox placeholder="経営者の略歴を入力"></HistoryTextBox>
+        <MotiveTextBox placeholder="創業の動機を箇条書きで入力" value={motiveText} onChange={(e) => setMotiveText(e.target.value)}/>
+        <MotiveSendButton onClick={() => handleSend(motiveText, setMotiveText)}>送信</MotiveSendButton>
+        <HistoryTextBox placeholder="経営者の略歴を入力" value={historyText} onChange={(e) => setHistoryText(e.target.value)}></HistoryTextBox>
+        <HistorySendButton onClick={() => handleSend(historyText, setHistoryText)}>送信</HistorySendButton>
         <Checkbox_1 />;
       </BackgroundContainer>
   )
@@ -64,6 +66,12 @@ const HistoryTextBox = styled(TextBox)`
   width: 465px;
   top: 190px;
   left: 335px;
+`;
+
+const HistorySendButton = styled(SendButton)`
+  position: absolute;
+  top: 220px;
+  left: 805px;
 `;
 
 const Checkbox_1 = styled(Checkboxs)`
