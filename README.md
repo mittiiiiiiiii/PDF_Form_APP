@@ -1,50 +1,57 @@
-# React + TypeScript + Vite
+# 銀行の入力フォームのMock
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 機能
 
-Currently, two official plugins are available:
+PDFをサイトのバックグラウンドとしてレンダリング
+その上にテキストボックス、チェックボックスをレンダリングすることで擬似的にPDFのような入力フォームを作成
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ディレクトリの機能
 
-## Expanding the ESLint configuration
+./server
+- GPTからのレスポンスを返すAPI
+  - アプリ側の単語を元にフォームにふさわしい文章を作成
+    - プロンプトはこれから作成予定
+- 入力フォームの情報をjsonで保存
+  - 後にPDF(Word)に書き込みするAPIに送信する予定
+  - jsonの各要素とフォームの対応付も行うべき
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 実行方法
 
-- Configure the top-level `parserOptions` property like this:
+1. リポジトリをクローン
+  ```bash
+  % git clone https://github.com/mittiiiiiiiii/PDF_Form_APP.git
+  ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. ChatGPT APIを取得
+  ![OPEN AI Platform](https://platform.openai.com/api-keys)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+3. `./server`に`.env`ファイルを作成し、APIキーを環境変数として使えるようにする
+  ```.env
+  OPEN_API_KEY='取得したAPIキー'
+  ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+4. APIの起動
+  ```bash
+  % cd server
+  % make
+  ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+5. Reactアプリの起動
+
+  4.と同時に起動する必要があるため、別のターミナルタブを起動
+  ```bash
+  % yarn dev
+  ```
+
+  起動したローカルホストにアクセス
+
+## 動作確認
+
+![スクリーンショット](https://github.com/user-attachments/assets/ca796698-8591-49d7-80fc-4c03933d8152)
+
+- 質問ボタンを押すとテキストボックスを上書き
+- チェックボックスを押すとマークが付く
+- プリントボタンを押すとAPI側にjsonが出力
+  - テキストの内容が出力される
+  - チェックしたチェックボックスがtrueになっている
+- スタイルが崩れている可能性がある(修正したい)
