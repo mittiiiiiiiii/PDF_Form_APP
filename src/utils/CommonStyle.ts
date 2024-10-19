@@ -5,9 +5,9 @@ export const Checkboxs = styled(Checkbox)`
   height: 1px;
   width: 1px;
   transform: scale(0.5);
-`
+`;
 
-export const TextBox = styled.input`
+export const TextBox = styled.textarea`
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;

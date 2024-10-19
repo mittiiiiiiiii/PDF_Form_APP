@@ -25,6 +25,7 @@ function App() {
       <BackgroundContainer>
         <MotiveTextBox placeholder="創業の動機を箇条書きで入力" value={text} onChange={(e) => setText(e.target.value)} />
         <MotiveSendButton onClick={handleSend}>送信</MotiveSendButton>
+        <HistoryTextBox placeholder="経営者の略歴を入力"></HistoryTextBox>
         <Checkbox_1 />;
       </BackgroundContainer>
   )
@@ -56,6 +57,13 @@ const MotiveSendButton = styled(SendButton)`
   position: absolute;
   top: 115px;
   left: 805px;
+`;
+
+const HistoryTextBox = styled(TextBox)`
+  height: 85px;
+  width: 465px;
+  top: 190px;
+  left: 335px;
 `;
 
 const Checkbox_1 = styled(Checkboxs)`
