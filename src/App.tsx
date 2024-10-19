@@ -1,6 +1,6 @@
 'use client';
 
-import Form_Image from '../public/PlanOfStart-up_page-0001.jpg'
+import Form_Image from '../public/Plan_PDF.jpg'
 import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
