@@ -4,6 +4,7 @@ import Form_Image from '../public/PlanOfStart-up_page-0001.jpg'
 import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
+import { Checkbox } from "@mui/material";
 
 function App() {
   const [text, setText]=useState<string>('');
@@ -22,8 +23,9 @@ function App() {
 
   return (
       <BackgroundContainer>
-          <TextBox placeholder="創業の動機を箇条書きで入力" value={text} onChange={(e) => setText(e.target.value)} />
-      <SendButton onClick={handleSend}>送信</SendButton>
+        <MotiveTextBox placeholder="創業の動機を箇条書きで入力" value={text} onChange={(e) => setText(e.target.value)} />
+        <MotiveSendButton onClick={handleSend}>送信</MotiveSendButton>
+        <Checkbox_1 />;
       </BackgroundContainer>
   )
 }
@@ -42,7 +44,7 @@ const BackgroundContainer = styled.div`
   background-repeat: no-repeat
 `;
 
-const TextBox = styled.input`
+const MotiveTextBox = styled.input`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -54,11 +56,19 @@ const TextBox = styled.input`
   left: 250px;
 `;
 
-const SendButton = styled.button`
+const MotiveSendButton = styled.button`
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
   position: absolute;
   top: 115px;
   left: 805px;
+`;
+
+const Checkbox_1 = styled(Checkbox)`
+  height: 1px;
+  width: 1px;
+  top: -195px;
+  left: -505px;
+  transform: scale(0.5);
 `
