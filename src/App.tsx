@@ -4,7 +4,7 @@ import Form_Image from '../public/PlanOfStart-up_page-0001.jpg'
 import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
-import { Checkbox } from "@mui/material";
+import { Checkboxs } from './utils/CommonStyle';
 
 function App() {
   const [text, setText]=useState<string>('');
@@ -65,10 +65,7 @@ const MotiveSendButton = styled.button`
   left: 805px;
 `;
 
-const Checkbox_1 = styled(Checkbox)`
-  height: 1px;
-  width: 1px;
+const Checkbox_1 = styled(Checkboxs)`
   top: -195px;
   left: -505px;
-  transform: scale(0.5);
 `
