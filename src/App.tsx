@@ -9,6 +9,9 @@ import { Checkboxs, TextBox,SendButton } from './utils/CommonStyle';
 function App() {
   const [motiveText, setMotiveText] = useState<string>('');
   const [historyText, setHistoryText] = useState<string>('');
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(false);
+  const [checked3, setChecked3] = useState(false);
 
   const handleSend = async (text: string, setText: (value: string) => void) => {
     try {
@@ -26,6 +29,9 @@ function App() {
     const data = {
       motive: motiveText,
       history: historyText,
+      checked1: checked1,
+      checked2: checked2,
+      checked3: checked3,
     };
 
     try {
@@ -40,6 +46,10 @@ function App() {
     }
   };
 
+  const handleCheckboxChange = (setChecked: React.Dispatch<React.SetStateAction<boolean>>) => () => {
+    setChecked(prev => !prev);
+  }
+
   return (
       <BackgroundContainer>
         <PrintButton onClick={handlePrint}>プリント</PrintButton>
@@ -48,9 +58,9 @@ function App() {
         <HistoryTextBox placeholder="経営者の略歴を入力" value={historyText} onChange={(e) => setHistoryText(e.target.value)}></HistoryTextBox>
         <HistorySendButton onClick={() => handleSend(historyText, setHistoryText)}>送信</HistorySendButton>
         <Experience_Checkbox>
-          <Checkbox_1/>
-          <Checkbox_2/>
-          <Checkbox_3/>
+          <Checkbox_1 checked={checked1} onChange={handleCheckboxChange(setChecked1)}/>
+          <Checkbox_2 checked={checked2} onChange={handleCheckboxChange(setChecked2)}/>
+          <Checkbox_3 checked={checked3} onChange={handleCheckboxChange(setChecked3)}/>
         </Experience_Checkbox>
       </BackgroundContainer>
   )
