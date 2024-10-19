@@ -3,16 +3,34 @@ import styled from 'styled-components';
 
 function App() {
   return (
-    <>
-      <Image src={Form_Image} className="logo react" alt="React logo" />
-    </>
+      <BackgroundContainer>
+        <TextBox placeholder="創業の動機を箇条書きで入力" />
+      </BackgroundContainer>
   )
 }
 
 export default App
 
-const Image = styled.img`
-  width: 95vw;
-  height: 95vh;
-  object-fit: contain;
-`
+const BackgroundContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-image: url(${Form_Image});
+  background-size: contain;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat
+`;
+
+const TextBox = styled.input`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 53px;
+  width: 550px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 105px;
+  left: 250px;
+`;
