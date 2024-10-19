@@ -1,4 +1,4 @@
-APP_NAME=chatgpt-turbo-sample-code
+APP_NAME=Chat_GPT_Response
 
 all: clean build
 
