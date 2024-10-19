@@ -47,7 +47,11 @@ function App() {
         <MotiveSendButton onClick={() => handleSend(motiveText, setMotiveText)}>送信</MotiveSendButton>
         <HistoryTextBox placeholder="経営者の略歴を入力" value={historyText} onChange={(e) => setHistoryText(e.target.value)}></HistoryTextBox>
         <HistorySendButton onClick={() => handleSend(historyText, setHistoryText)}>送信</HistorySendButton>
-        <Checkbox_1 />;
+        <Experience_Checkbox>
+          <Checkbox_1/>
+          <Checkbox_2/>
+          <Checkbox_3/>
+        </Experience_Checkbox>
       </BackgroundContainer>
   )
 }
@@ -99,7 +103,20 @@ const HistorySendButton = styled(SendButton)`
   left: 805px;
 `;
 
+const Experience_Checkbox=styled.div`
+`;
+
 const Checkbox_1 = styled(Checkboxs)`
-  top: -195px;
-  left: -505px;
-`
+  top: -194px;
+  left: -488px;
+`;
+
+const Checkbox_2 = styled(Checkboxs)`
+  top: -180px;
+  left: -506px;
+`;
+
+const Checkbox_3 = styled(Checkboxs)`
+  top: -166px;
+  left: -524px;
+`;
