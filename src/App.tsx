@@ -4,7 +4,7 @@ import Form_Image from '../public/PlanOfStart-up_page-0001.jpg'
 import styled from 'styled-components';
 import { useState } from 'react';
 import axios from 'axios';
-import { Checkboxs } from './utils/CommonStyle';
+import { Checkboxs, TextBox,SendButton } from './utils/CommonStyle';
 
 function App() {
   const [text, setText]=useState<string>('');
@@ -44,22 +44,15 @@ const BackgroundContainer = styled.div`
   background-repeat: no-repeat
 `;
 
-const MotiveTextBox = styled.input`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+const MotiveTextBox = styled(TextBox)`
   height: 53px;
   width: 550px;
-  box-sizing: border-box;
   position: absolute;
   top: 105px;
   left: 250px;
 `;
 
-const MotiveSendButton = styled.button`
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+const MotiveSendButton = styled(SendButton)`
   position: absolute;
   top: 115px;
   left: 805px;

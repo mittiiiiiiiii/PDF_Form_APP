@@ -6,3 +6,17 @@ export const Checkboxs = styled(Checkbox)`
   width: 1px;
   transform: scale(0.5);
 `
+
+export const TextBox = styled.input`
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    position: absolute;
+`;
+
+export const SendButton = styled.button`
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
